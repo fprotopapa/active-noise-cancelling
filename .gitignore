@@ -1,0 +1,4 @@
+.ignore
+
+/output/*
+!/output/README.md
