@@ -27,12 +27,15 @@ else:
     max_len = len(s2)
 # Concatenate audio     
 S = np.c_[s1[:max_len,1], s2[:max_len,1] ]
+max_amp_s1 = max(s1[:max_len,1])
+max_amp_s2 = max(s2[:max_len,1])
+print(f'Max value: S1: {max_amp_s1}, S2: {max_amp_s2}')
 #
 # Normalize data + add noise
-# S += 0.2 * np.random.normal(size=S.shape) 
+S += (min(max_amp_s1, max_amp_s2) * 0.1) * np.random.normal(size=S.shape) 
 S /= S.std(axis=0)
 #
-# Mix data with mixing matrix (S = A * X)
+# Mix data with mixing matrix (X = A * S)
 A = np.array([[1, 1], [0.5, 2]])  # Mixing matrix
 X = np.dot(S, A.T)  
 #
@@ -46,8 +49,7 @@ A_ = ica.mixing_
 assert np.allclose(X, np.dot(S_, A_.T) + ica.mean_)
 #
 # Reconstruct signal amplitude for exported files
-max_amp_s1 = max(s1[:max_len,1])
-max_amp_s2 = max(s2[:max_len,1])
+
 max_amp_s1_ica = max(S_[:,0])
 max_amp_s2_ica = max(S_[:,1])
 # Calculate factor
