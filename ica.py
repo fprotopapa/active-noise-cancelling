@@ -34,13 +34,15 @@ print(f'Max value: S1: {max_amp_s1}, S2: {max_amp_s2}')
 # Normalize data + add noise
 S += (min(max_amp_s1, max_amp_s2) * 0.1) * np.random.normal(size=S.shape) 
 S /= S.std(axis=0)
+
 #
 # Mix data with mixing matrix (X = A * S)
 A = np.array([[1, 1], [0.5, 2]])  # Mixing matrix
 X = np.dot(S, A.T)  
+
 #
 # Compute ICA
-ica = FastICA(n_components=2)
+ica = FastICA(n_components=None)
 # Reconstruct signals
 S_ = ica.fit_transform(X)  
 # Get estimated mixing matrix

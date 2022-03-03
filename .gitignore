@@ -1,4 +1,6 @@
 .ignore
+/.vscode
+/.ipynb_checkpoints
 
 /output/*
 !/output/README.md
