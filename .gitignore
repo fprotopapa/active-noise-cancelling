@@ -2,5 +2,11 @@
 /.vscode
 /.ipynb_checkpoints
 
-/output/*
-!/output/README.md
+/audio_samples/*
+!/audio_samples/README.md
+
+/mixed_signals/*
+!/mixed_signals/README.md
+
+/ica_samples/*
+!/ica_samples/README.md
