@@ -10,3 +10,6 @@
 
 /ica_samples/*
 !/ica_samples/README.md
+
+/recovered/*
+!/recovered/README.md
